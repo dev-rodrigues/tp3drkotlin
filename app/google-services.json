@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "77450654125",
+    "project_id": "tp3desenvkotlin",
+    "storage_bucket": "tp3desenvkotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77450654125:android:5db4d8cb3c72d92e857124",
+        "android_client_info": {
+          "package_name": "com.example.tp3desenvolvimentokotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77450654125-iuq7l2quamtn8e0v6fdjd48thunpl7p6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvyQ88Ycu91oqn7ufTM2f1I93zSymbOP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77450654125-iuq7l2quamtn8e0v6fdjd48thunpl7p6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
