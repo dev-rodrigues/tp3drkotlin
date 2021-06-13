@@ -11,19 +11,19 @@ class EventDAOImpl: EventDAO {
     var db = FirebaseFirestore.getInstance().collection("event")
 
     override fun store(obj: Event): Task<Void> {
-        throw NotImplementedError()
+        return db.document().set(obj)
     }
 
-    override fun destroy(type: String): Task<Void> {
-        throw NotImplementedError()
+    override fun destroy(id: String): Task<Void> {
+        return db.document(id).delete()
     }
 
     override fun update(obj: Event, key: String): Task<Void> {
-        throw NotImplementedError()
+        return db.document(key).set(obj)
     }
 
     override fun findBy(key: String): Task<QuerySnapshot> {
-        throw NotImplementedError()
+        return db.whereEqualTo("useId", key).get();
     }
 
     override fun findAll(): Task<QuerySnapshot> {

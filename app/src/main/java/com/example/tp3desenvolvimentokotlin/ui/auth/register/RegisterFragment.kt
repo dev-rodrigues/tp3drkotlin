@@ -1,6 +1,7 @@
 package com.example.tp3desenvolvimentokotlin.ui.auth.register
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +14,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.tp3desenvolvimentokotlin.R
 import com.example.tp3desenvolvimentokotlin.service.FirebaseAuthService
 import com.example.tp3desenvolvimentokotlin.service.UserDetailService
+import com.example.tp3desenvolvimentokotlin.service.ValidationService
+import com.example.tp3desenvolvimentokotlin.service.dto.InputText
 import com.example.tp3desenvolvimentokotlin.service.impl.FirebaseAuthServiceImpl
 import com.example.tp3desenvolvimentokotlin.service.impl.UserDetailServiceImpl
+import com.example.tp3desenvolvimentokotlin.service.impl.ValidationServiceImpl
 import kotlinx.android.synthetic.main.register_fragment.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class RegisterFragment : Fragment() {
 
@@ -24,6 +30,7 @@ class RegisterFragment : Fragment() {
     private lateinit var userDetailService: UserDetailService
 
     private lateinit var viewAux: View
+    private lateinit var validationService: ValidationService
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +41,7 @@ class RegisterFragment : Fragment() {
 
         firebaseAuthService = FirebaseAuthServiceImpl()
         userDetailService = UserDetailServiceImpl()
+        validationService = ValidationServiceImpl()
 
         configureViewModel()
         configureNavigation()
@@ -67,11 +75,32 @@ class RegisterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         btnRegisterExecute.setOnClickListener{
+
             val fullName = iptRegisterFullName.text.toString()
             val email = iptRegisterEmail.text.toString()
             val password = iptRegisterPassword.text.toString()
 
-            viewModel.register(email, password, fullName)
+            var inputs = ArrayList<InputText>()
+            inputs.addAll(Arrays.asList(
+                InputText("Nome", fullName),
+                InputText("E-mail", email),
+                InputText("Senha", password))
+            )
+
+            var validacao = validationService.validate(inputs)
+
+            if (validacao.isNullOrEmpty())  {
+                viewModel.register(email, password, fullName)
+            } else {
+                var position = 1
+                validacao.forEach {
+                    val makeText = Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG)
+                    makeText.setGravity(Gravity.LEFT, position * 10, position * 10)
+                    position *= 2
+                    makeText.show()
+                }
+            }
+
         }
     }
 }

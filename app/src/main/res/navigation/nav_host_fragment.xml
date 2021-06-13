@@ -9,7 +9,7 @@
         android:id="@+id/loginFragment"
         android:name="com.example.tp3desenvolvimentokotlin.ui.auth.login.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment" >
+        tools:layout="@layout/login_fragment">
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
@@ -26,5 +26,22 @@
         android:id="@+id/indexFragment"
         android:name="com.example.tp3desenvolvimentokotlin.ui.home.dashboard.IndexFragment"
         android:label="index_fragment"
-        tools:layout="@layout/index_fragment" />
+        tools:layout="@layout/index_fragment" >
+        <action
+            android:id="@+id/action_indexFragment_to_registerVaccineFragment"
+            app:destination="@id/registerVaccineFragment" />
+        <action
+            android:id="@+id/action_indexFragment_to_showVaccineFragment"
+            app:destination="@id/showVaccineFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerVaccineFragment"
+        android:name="com.example.tp3desenvolvimentokotlin.ui.home.registerVaccine.RegisterVaccineFragment"
+        android:label="register_vaccine_fragment"
+        tools:layout="@layout/register_vaccine_fragment" />
+    <fragment
+        android:id="@+id/showVaccineFragment"
+        android:name="com.example.tp3desenvolvimentokotlin.ui.home.show.ShowVaccineFragment"
+        android:label="show_vaccine_fragment"
+        tools:layout="@layout/show_vaccine_fragment" />
 </navigation>
